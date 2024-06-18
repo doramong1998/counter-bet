@@ -80,7 +80,7 @@ function App() {
             <Card style={{ marginBottom: 12 }}>
               <div>Đặt kèo [Home, Draw, Away]: {i?.bet?.toString()}</div>
               <div>
-                Lấy tiền [Take Home, Take Draw, Take Away]: {i?.take?.toString()}
+                [Take Home, Take Draw, Take Away]: {i?.take?.toString()}
               </div>
             </Card>
           );
