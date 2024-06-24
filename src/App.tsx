@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Form, Input, Button, Card, Divider, Radio } from 'antd';
 import './App.css';
-import _ from 'lodash';
+import _, { round } from 'lodash';
 
 function App() {
   const [result, setResult] = useState<any>([]);
@@ -105,14 +105,20 @@ function App() {
           return (
             <Card style={{ marginBottom: 12 }}>
               <div>
-                [Home, Draw, Away]: {i?.bet?.toString()} {`=>`} TOTAL:{' '}
-                {_.sum(i?.bet)}
+                Vào kèo [Home, Draw, Away]:{' '}
+                {`[${i?.bet[0]}, ${i?.bet[1]}, ${i?.bet[2]}]`}
               </div>
               <div>
-                [Take Home, Take Draw, Take Away]: {i?.take?.toString()}
+                Tiền ăn [Home, Draw, Away]:{' '}
+                {`[${round(i?.take[0])}, ${round(i?.take[1])}, ${round(
+                  i?.take[2]
+                )}]`}
               </div>
               <div>
-                [Get Home, Get Draw, Get Away]: {i?.interest?.toString()}
+                Thực nhận [Home, Draw, Away]:{' '}
+                {`[${round(i?.interest[0])}, ${round(i?.interest[1])}, ${round(
+                  i?.interest[2]
+                )}]`}
               </div>
             </Card>
           );
