@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Form, Input, Button, Card, Divider, Radio } from 'antd';
+import { Form, Input, Button, Card, Divider, Radio, Spin } from 'antd';
 import './App.css';
 import _, { round } from 'lodash';
 
@@ -7,7 +7,6 @@ function App() {
   const [result, setResult] = useState<any>([]);
   const [loading, setLoading] = useState<any>(false);
   const counterBet = (values: any) => {
-    setLoading(true);
     const { maxValue, rateHome, rateDraw, rateAway, suggest } = values;
     const allBet = [];
 
@@ -27,7 +26,6 @@ function App() {
         }
       }
     }
-
     setResult(
       _.take(
         _.reverse(
@@ -53,6 +51,11 @@ function App() {
     { label: 'Away', value: 'away' },
   ];
 
+  const beforeCouterBet = (values: any) => {
+    setLoading(true);
+    setTimeout(() => counterBet(values), 200);
+  };
+
   return (
     <div style={{ padding: 24 }}>
       <Card title='Người không chơi không bao giờ thắng 🥲 🙃'>
@@ -61,7 +64,7 @@ function App() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           style={{ maxWidth: 600 }}
-          onFinish={counterBet}
+          onFinish={beforeCouterBet}
           initialValues={{
             maxValue: 600,
             rateHome: 7.3,
@@ -88,14 +91,14 @@ function App() {
           </Form.Item>
 
           <Form.Item>
-            <Button loading={loading} type='primary' htmlType='submit'>
+            <Button type='primary' htmlType='submit'>
               Submit
             </Button>
           </Form.Item>
         </Form>
       </Card>
       <Divider></Divider>
-      <div>
+      <Spin spinning={loading}>
         {result?.map((i: any) => {
           return (
             <Card style={{ marginBottom: 12 }}>
@@ -118,7 +121,7 @@ function App() {
             </Card>
           );
         })}
-      </div>
+      </Spin>
     </div>
   );
 }
