@@ -68,7 +68,7 @@ function App() {
           style={{ maxWidth: 600 }}
           onFinish={counterBet}
           initialValues={{
-            maxValue: 200,
+            maxValue: 600,
             rateHome: 7.3,
             rateDraw: 5.2,
             rateAway: 1.9,
