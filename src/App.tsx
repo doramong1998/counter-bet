@@ -38,11 +38,7 @@ function App() {
                 i?.bet?.[0] <= 200 && i?.bet?.[1] <= 200 && i?.bet?.[2] <= 200
             ),
             (i: any) =>
-              suggest === 'none'
-                ? _.sum(i?.interest)
-                : i?.interest?.[
-                    suggest === 'home' ? 0 : suggest === 'draw' ? 1 : 2
-                  ]
+              i?.interest?.[suggest === 'home' ? 0 : suggest === 'draw' ? 1 : 2]
           )
         ),
         20
@@ -52,7 +48,6 @@ function App() {
   };
 
   const options = [
-    { label: 'None', value: 'none' },
     { label: 'Home', value: 'home' },
     { label: 'Draw', value: 'draw' },
     { label: 'Away', value: 'away' },
@@ -60,7 +55,7 @@ function App() {
 
   return (
     <div style={{ padding: 24 }}>
-      <Card title='Counter Bet'>
+      <Card title='Người không chơi không bao giờ thắng 🥲 🙃'>
         <Form
           name='basic'
           labelCol={{ span: 8 }}
@@ -78,17 +73,17 @@ function App() {
           <Form.Item label='Số tiền đặt cọc' name='maxValue'>
             <Input autoFocus id='input' />
           </Form.Item>
-          <Form.Item label='Tỉ lệ đội nhà Win' name='rateHome'>
+          <Form.Item label='Tỉ lệ Home Win' name='rateHome'>
             <Input />
           </Form.Item>
-          <Form.Item label='Tỉ lệ Hoà' name='rateDraw'>
+          <Form.Item label='Tỉ lệ Draw' name='rateDraw'>
             <Input />
           </Form.Item>
-          <Form.Item label='Tỉ lệ đội khách Win' name='rateAway'>
+          <Form.Item label='Tỉ lệ Away Win' name='rateAway'>
             <Input />
           </Form.Item>
 
-          <Form.Item label='Ưu tiên sắp xếp' name='suggest'>
+          <Form.Item label='Ưu tiên sắp xếp tiền theo' name='suggest'>
             <Radio.Group options={options} />
           </Form.Item>
 
